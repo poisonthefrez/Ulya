@@ -144,7 +144,7 @@ button {
 .gamefield {
     position: relative;
     width: 90%;
-    height: 600px; /* вот тут регулируешь высоту игрового поля */
+    height: 450px;
     background-color: #f2ffe3;
     border: 3px dashed #f48fb1;
     margin: 20px auto;
