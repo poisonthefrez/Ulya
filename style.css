@@ -1,77 +1,403 @@
-body {
+/* === ОБЩИЕ НАСТРОЙКИ === */
+* {
   margin: 0;
-  background: #fff0f5;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+body {
+  font-family: "Comfortaa", sans-serif;
+  background: linear-gradient(135deg, #ffe0ec, #ffeec2);
+  color: #333;
+  height: 100vh;
+}
+button {
+  font-family: 'Comfortaa', sans-serif;
+}
+/* === МОДАЛЬНОЕ ОКНО ПРАВИЛ === */
+.rules {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e9e0ff, #cdffc2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.rules span {
+  font-size: 1.3rem;
+  background: #ffe7ef;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Крестик закрытия */
+.closerules {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  color: grey;
+  border: none;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closerules:hover {
+  background: #ffffff;
+}
+
+/* Кнопка "Понял" */
+.rulesunderstand {
+  margin-top: 30px;
+  margin-bottom: 0;
+  background: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.rulesunderstand:hover {
+  background: #ffa726;
+}
+
+/* === МОДАЛЬНОЕ ОКНО ПОДАРКА === */
+.gift {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: none; /* по умолчанию скрыто */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.getgift,
+.restartgame {
+  background: #d1c4e9;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.getgift:hover {
+  background: #b39ddb;
+}
+
+.restartgame {
+  background: #80cbc4;
+}
+
+.restartgame:hover {
+  background: #4db6ac;
+}
+
+/* === ОСНОВНОЙ ЭКРАН ИГРЫ === */
+.mainpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 40px;
+}
+
+.scorepoints {
+  font-size: 1.4rem;
+  background: #fff3cd;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
+}
+
+/* Game Field */
+.gamefield {
+    position: relative;
+    width: 90%;
+    height: 600px; /* вот тут регулируешь высоту игрового поля */
+    background-color: #f2ffe3;
+    border: 3px dashed #f48fb1;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 20px;
+}
+/* Кнопка старта */
+.startgame {
+  margin-top: 0;
+  padding: 14px 30px;
+  font-size: 1.2rem;
+  background: #aed581;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.startgame:hover {
+  background: #9ccc65;
+}
+
+/* Звери */
+.animal {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+    color: #333;
+}
+
+.animal:hover {
+    transform: scale(1.2);
+}
+/* Кнопка "назад" */
+.backbutton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #fff;
+    border: 2px solid #888;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.2s;
+}
+
+.backbutton:hover {
+    background-color: #eee;
+}
+.finalscreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffe0ec, #ffeec2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-}
-h1 {
-  color: #d6336c;
-  margin: 20px 0 10px;
-  font-weight: 700;
-}
-#score {
-  font-size: 24px;
-  color: #a83254;
-  margin-bottom: 15px;
-}
-#game-area {
-  position: relative;
-  width: 90vw;
-  height: 70vh;
-  background: #ffe6f0;
-  border-radius: 15px;
-  box-shadow: 0 0 10px #d18ea8;
-  overflow: hidden;
-}
-.creature {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 8px #f29ac0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  user-select: none;
-  touch-action: manipulation;
-  transition: transform 0.2s;
-}
-.creature.happy {
-  background: #ffccdd;
-  box-shadow: 0 0 15px #ff6699;
-  transform: scale(1.2);
-}
-#message {
-  margin-top: 15px;
-  font-size: 20px;
-  color: #d6336c;
-  min-height: 28px;
+  gap: 20px;
+  z-index: 1000;
+  font-family: "Comfortaa", sans-serif;
   text-align: center;
 }
-#start-btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #d6336c;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 18px;
-  cursor: pointer;
-  user-select: none;
-  touch-action: manipulation;
-}
-#start-btn:active {
-  background: #b02753;
+
+.finalscreen h1 {
+  font-size: 2.5rem;
+  margin: 0;
 }
 
-@keyframes rise {
-  0% {opacity: 1; transform: translateY(0);}
-  100% {opacity: 0; transform: translateY(-40px);}
+.finalscreen h2 {
+  font-size: 1.5rem;
+  max-width: 80%;
+  white-space: pre-line;
+}
+.final-screen h3 {
+  margin-bottom: 50px;
+}
+
+.finalscreen button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+}
+.final-getgift {
+  font-size: 10rem;
+  background: none;
+}
+.final-restart {
+  background-color: #eeb9e4;
+}
+
+
+.summary-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 колонки равной ширины */
+  gap: 10px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.summary-list div {
+  padding: 5px 10px;
+  background: rgba(255, 192, 203, 0.3); /* нежный фон для элементов */
+  border-radius: 8px;
+  text-align: center;
+}
+
+@keyframes popUp {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) scale(1.2);
+    opacity: 0;
+  }
+}
+.falling-heart {
+  position: fixed;
+  bottom: -30px;
+  animation: heartFloat 5s linear forwards;
+  z-index: 9999;
+  pointer-events: none;
+}
+/* ❤️ Анимация сердечка */
+.heart-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pop-heart 1s ease-out forwards;
+  font-size: 32px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes pop-heart {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -60%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%) scale(0.8);
+  }
+}
+
+/* Финальный экран: столбцы */
+#hugged-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hug-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Дождь из сердец — на весь экран */
+.heart-rain {
+  position: fixed; /* фиксируем на весь экран */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+#gameField {
+  opacity: 1;
+  transition: opacity 2s ease;
+}
+
+.finalscreen {
+  opacity: 0;
+  display: flex; /* чтобы можно было сразу делать opacity */
+  pointer-events: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 2s ease;
+  position: relative; /* чтобы финалка была сверху */
+  z-index: 10; /* чтобы была поверх игры */
+}
+.finalscreen h1 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+.final-getgift {
+  margin-bottom: 50px;
+}
+.finalscreen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes popUp {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+    top: -30px;
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }

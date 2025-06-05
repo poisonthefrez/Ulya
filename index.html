@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<title>Обнимашки для Ули</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <title>UlyaGame</title>
 </head>
+
 <body>
+  <!-- Модальное окно с правилами -->
+  <div class="rules">
+    <button class="closerules" aria-label="Закрыть правила">✖</button>
+    <span>🤗 Твоя задача — обнять как можно больше милых зверей!</span>
+    <span>👆🏻 Клик по зверьку +1 обнимашка</span>
+    <span>⏳ Успей обнять их до того, как они исчезнут!</span>
+    <span>🎁 В конце не забудь про подарочек!</span>
+    <span>🥰 Удачи и хорошей игры солнышко!</span>
+    <button class="rulesunderstand">Поняла!</button>
+  </div>
 
-<h1>Обнимашки для Ульяши</h1>
-<div id="score">Очки: 0</div>
-<div id="game-area"></div>
-<div id="message"></div>
-<button id="start-btn">Начать игру</button>
+  <!-- Финальный экран -->
+  <div class="finalscreen" style="display: none;">
+    <h1>Умничка!</h1>
+    <h2 class="final-summary"></h2>
+    <div id="summaryList" class="summary-list"></div>
+    <h3 class="final-sms">Твой подарочек:</h3>
+    <button class="final-getgift">🎁</button>
+    <button class="final-restart">🔁</button>
+  </div>
 
-<script src="script.js"></script>
+  <!-- Основной экран -->
+  <section id="mainpage" class="mainpage">
+    <div class="scorepoints" id="scorePoints">Обнимашек: 0</div>
+    <div class="gamefield" id="gameField"></div>
+    <button class="startgame" id="startGame">Обнимашки!</button>
+  </section>
+
+  <script src="script.js"></script>
 </body>
+
 </html>
